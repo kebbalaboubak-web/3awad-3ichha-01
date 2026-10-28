@@ -1,0 +1,12 @@
+name = "3awed-3ichha"
+compatibility_date = "2025-01-01"
+pages_build_output_dir = "public"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "3awed-3ichha-db"
+database_id = "REMPLACER_PAR_VOTRE_DATABASE_ID"
+
+[[r2_buckets]]
+binding = "BUCKET"
+bucket_name = "3awed-3ichha-media"

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>3awed 3ichha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<!-- ACCUEIL -->
+<section id="v-home" class="view home" hidden>
+  <nav class="topnav"><span class="logo">3awed 3ichha</span><button class="ghost" data-go="admin">Espace admin</button></nav>
+  <div class="home-body">
+    <h1 class="logo big">3awed 3ichha</h1>
+    <p class="tag">Vos plus beaux souvenirs,<br>toujours à portée de main</p>
+    <p class="sub">Des cartes NFC personnalisées qui donnent vie à vos souvenirs : photos, vidéos, messages, musique. Une seule touche, toute une histoire.</p>
+    <div class="nfc-card" aria-hidden="true"><span class="logo">3awed 3ichha</span><i>)))</i></div>
+  </div>
+  <ul class="features">
+    <li><b>Photos</b>Souvenirs en images</li><li><b>Vidéos</b>Moments en mouvement</li>
+    <li><b>Musique</b>Votre chanson préférée</li><li><b>Lettre</b>Un message du cœur</li>
+  </ul>
+</section>
+
+<!-- CONNEXION -->
+<section id="v-login" class="view center" hidden>
+  <form id="login-form" class="panel login">
+    <span class="logo">3awed 3ichha</span>
+    <h2>Espace administrateur</h2>
+    <label>Mot de passe<input type="password" id="pw" autocomplete="current-password" required></label>
+    <p class="err" id="login-err" role="alert"></p>
+    <button class="primary" type="submit">Se connecter</button>
+    <button class="link" type="button" data-go="home">Retour à l’accueil</button>
+  </form>
+</section>
+
+<!-- ADMIN -->
+<section id="v-admin" class="view admin" hidden>
+  <aside class="side">
+    <span class="logo">3awed 3ichha</span>
+    <nav>
+      <button data-sec="dash" class="on">Tableau de bord</button>
+      <button data-sec="form" id="nav-new">Nouveau client</button>
+      <button data-sec="clients">Mes clients</button>
+    </nav>
+    <button id="logout" class="logout">Déconnexion</button>
+  </aside>
+  <main class="main">
+    <!-- tableau de bord -->
+    <div class="sec" id="sec-dash">
+      <h1>Tableau de bord</h1><p class="muted">Gérez vos clients et leurs souvenirs</p>
+      <div class="stats">
+        <div class="stat s1"><b id="st-total">0</b>Clients créés</div>
+        <div class="stat s2"><b id="st-pub">0</b>Liens actifs</div>
+        <div class="stat s3"><b id="st-draft">0</b>Brouillons</div>
+      </div>
+      <div class="dash-grid">
+        <div class="panel"><div class="row between"><h3>Clients récents</h3><button class="link" data-sec="clients">Voir tout</button></div><div id="recent" class="list"></div></div>
+        <div class="panel add"><div class="plus">+</div><h3>Ajouter un nouveau client</h3><p class="muted">Créez une page personnalisée et générez un lien unique.</p><button class="primary" data-sec="form" data-new>Commencer</button></div>
+      </div>
+    </div>
+    <!-- clients -->
+    <div class="sec" id="sec-clients" hidden>
+      <div class="row between"><h1>Mes clients</h1><button class="primary" data-sec="form" data-new>Créer une page</button></div>
+      <input type="search" id="search" placeholder="Rechercher un client…" aria-label="Rechercher">
+      <div class="panel"><div id="all" class="list"></div></div>
+    </div>
+    <!-- formulaire -->
+    <div class="sec" id="sec-form" hidden>
+      <div class="row between"><button class="link" data-sec="clients">← Retour</button><h2 id="form-title">Nouveau client</h2></div>
+      <div class="form-grid">
+        <div class="panel">
+          <h3>Informations du client</h3>
+          <label>Nom du client<input id="f-name" maxlength="100" placeholder="Ex : Amina &amp; Yacine"></label>
+          <label>Titre de la page<input id="f-title" maxlength="150" placeholder="Ex : Notre histoire"></label>
+          <label>Petit texte d’introduction (facultatif)<input id="f-intro" maxlength="500" placeholder="Ex : Des moments précieux, pour toujours"></label>
+          <h3>Thème visuel</h3>
+          <div class="themes" id="themes">
+            <button type="button" data-t="romantique" class="th1">Romantique</button><button type="button" data-t="moderne" class="th2">Moderne</button>
+            <button type="button" data-t="elegant" class="th3">Élégant</button><button type="button" data-t="nature" class="th4">Nature</button>
+          </div>
+          <h3>Contenu</h3>
+          <div class="tabs" id="tabs"><button type="button" data-tab="photos" class="on">Photos</button><button type="button" data-tab="video">Vidéo</button><button type="button" data-tab="music">Musique</button><button type="button" data-tab="letter">Lettre / Message</button></div>
+          <div class="tab" id="tab-photos">
+            <label class="drop" id="drop"><b>Ajouter des photos</b><span>Glissez vos images ici ou cliquez pour sélectionner (JPG, PNG, WebP — max 10 Mo)</span><input type="file" id="f-photos" accept="image/jpeg,image/png,image/webp" multiple hidden></label>
+            <div class="thumbs" id="thumbs"></div>
+          </div>
+          <div class="tab" id="tab-video" hidden>
+            <label class="drop"><b>Ajouter une vidéo</b><span>MP4, WebM ou MOV — max 90 Mo, une seule vidéo</span><input type="file" id="f-video" accept="video/mp4,video/webm,video/quicktime" hidden></label>
+            <div id="vid-box"></div>
+          </div>
+          <div class="tab" id="tab-music" hidden>
+            <label>Lien de la chanson (YouTube, Spotify, etc.)<input id="f-music" type="url" placeholder="Ex : https://www.youtube.com/watch?v=…"></label>
+            <p class="muted">YouTube et Spotify sont lus dans la page. Pour les autres plateformes, un bouton ouvre le lien.</p>
+          </div>
+          <div class="tab" id="tab-letter" hidden>
+            <label>Lettre ou message<textarea id="f-letter" rows="9" maxlength="10000" placeholder="Écrivez ici le message du cœur…"></textarea></label>
+          </div>
+        </div>
+        <div class="panel prev">
+          <h3>Aperçu de la page</h3>
+          <div class="phone"><div class="pub" id="pv"></div></div>
+          <p class="err" id="form-err" role="alert"></p>
+          <button class="primary" id="btn-publish">Créer la page &amp; générer le lien NFC</button>
+          <button class="ghost dark" id="btn-draft">Enregistrer en brouillon</button>
+          <p class="muted" id="save-status"></p>
+        </div>
+      </div>
+    </div>
+    <!-- succès -->
+    <div class="sec" id="sec-done" hidden>
+      <div class="panel done">
+        <div class="check">✓</div><h2>Lien généré avec succès !</h2>
+        <p class="muted">La page du client est publiée. Enregistrez ce lien sur la puce NFC.</p>
+        <div class="linkbox"><input id="done-url" readonly></div>
+        <button class="primary" id="done-copy">Copier le lien</button>
+        <a class="ghost dark btn" id="done-open" target="_blank" rel="noopener">Voir la page</a>
+        <p class="tip"><b>Astuce</b> Collez ce lien sur votre carte NFC à l’aide de votre application de programmation.</p>
+        <button class="link" data-sec="clients">Retour aux clients</button>
+      </div>
+    </div>
+  </main>
+</section>
+
+<!-- PAGE PUBLIQUE -->
+<section id="v-public" class="view" hidden><div id="pub" class="pub"></div></section>
+<section id="v-error" class="view center" hidden><div class="panel login"><span class="logo">3awed 3ichha</span><h2 id="err-title"></h2><p class="muted" id="err-msg"></p></div></section>
+
+<div id="toast" role="status"></div>
+<script src="/script.js"></script>
+</body>
+</html>
